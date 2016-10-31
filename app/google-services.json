@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "339358566866",
+    "firebase_url": "https://car-tracker-52a42.firebaseio.com",
+    "project_id": "car-tracker-52a42",
+    "storage_bucket": "car-tracker-52a42.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339358566866:android:5de7b98b0ae93a2f",
+        "android_client_info": {
+          "package_name": "geert.berkers.cartracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "339358566866-uo64e5nsd2rntaek7qcor8nelfa2ge0p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVoanK6oTjt5uHkxOk2iECXmOU9z-BjVs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

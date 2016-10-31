@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Car Tracker</string>
+    <string name="drawer_open">Open Navigation Drawer</string>
+    <string name="drawer_close">Close Navigation Drawer</string>
+    <string name="menu_picture">Menu picture</string>
+    <string name="action_plus">Add</string>
+</resources>
