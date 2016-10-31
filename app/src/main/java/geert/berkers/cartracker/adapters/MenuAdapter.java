@@ -17,7 +17,7 @@ public class MenuAdapter extends BaseAdapter {
     private Context context;
 
     private String[] sort = {"Huidige Tank", "Betaalde Tank"};
-    private Integer[] images = {R.mipmap.ic_launcher, R.mipmap.ic_launcher};
+    private Integer[] images = {R.mipmap.ic_current, R.mipmap.ic_past};
 
     public MenuAdapter(Context context) {
         this.context = context;

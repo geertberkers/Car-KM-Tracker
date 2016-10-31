@@ -31,7 +31,10 @@ public class DatabaseManager {
     }
 
     private void setUpDatabase() {
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         database = FirebaseDatabase.getInstance().getReference();
+        database.keepSynced(true);
+
     }
 
     public void setChildEventListener(ChildEventListener childEventListener){

@@ -23,6 +23,6 @@
         android:layout_centerVertical="true"
         android:layout_toEndOf="@id/menuPicture"
         android:layout_toRightOf="@id/menuPicture"
-        android:textColor="#FF000000"
+        android:textColor="@color/icons"
         android:textSize="15sp"/>
 </RelativeLayout>

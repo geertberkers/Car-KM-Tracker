@@ -38,8 +38,9 @@ public class RideManager {
     }
 
     public void onRideAdded(Ride ride) {
-        ridesList.add(ride);
-        System.out.println("Ride added. Size: " + ridesList.size());
+        if (!ridesList.contains(ride)) {
+            ridesList.add(ride);
+        }
     }
 
     public void changeRide(Ride ride) {
@@ -48,8 +49,8 @@ public class RideManager {
 
     public void onRideChanged(Ride changedRide) {
         List<Ride> rides = new ArrayList<>();
-        for(Ride ride : ridesList){
-            if(ride.getKey().equals(changedRide.getKey())){
+        for (Ride ride : ridesList) {
+            if (ride.getKey().equals(changedRide.getKey())) {
                 rides.add(changedRide);
             } else {
                 rides.add(ride);
@@ -67,7 +68,15 @@ public class RideManager {
         ridesList.remove(ride);
     }
 
-    public List<Ride> getRidesList() {
-        return ridesList;
+    public List<Ride> getRidesList(boolean paid) {
+        List<Ride> sortedRides = new ArrayList<>();
+
+        for (Ride ride : ridesList) {
+            if (ride.isPaid() == paid) {
+                sortedRides.add(ride);
+            }
+        }
+
+        return sortedRides;
     }
 }

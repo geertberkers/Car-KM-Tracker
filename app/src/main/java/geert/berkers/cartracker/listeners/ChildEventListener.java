@@ -5,6 +5,7 @@ import android.util.Log;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 
+import geert.berkers.cartracker.activities.MainActivity;
 import geert.berkers.cartracker.manager.RideManager;
 import geert.berkers.cartracker.model.Ride;
 
@@ -14,14 +15,16 @@ import geert.berkers.cartracker.model.Ride;
 
 public class ChildEventListener implements com.google.firebase.database.ChildEventListener {
 
-    private static final String TAG = "FireBase";
-
+    private final MainActivity mainActivity;
     private Ride latestAddedRide;
 
     private RideManager rideManager;
 
-    public ChildEventListener(RideManager rideManager){
+    private static final String TAG = "FireBase";
+
+    public ChildEventListener(RideManager rideManager, MainActivity activity){
         this.rideManager = rideManager;
+        this.mainActivity = activity;
     }
 
     @Override
@@ -33,6 +36,8 @@ public class ChildEventListener implements com.google.firebase.database.ChildEve
 
         rideManager.onRideAdded(ride);
         latestAddedRide = ride;
+
+        notifyMainActivityRidesList();
     }
 
     @Override
@@ -45,6 +50,9 @@ public class ChildEventListener implements com.google.firebase.database.ChildEve
         if (!latestAddedRide.equals(ride)) {
             rideManager.onRideChanged(ride);
         }
+
+        notifyMainActivityRidesList();
+
     }
 
     @Override
@@ -55,6 +63,8 @@ public class ChildEventListener implements com.google.firebase.database.ChildEve
         ride.setKey(dataSnapshot.getKey());
 
         rideManager.onRideRemoved(ride);
+
+        notifyMainActivityRidesList();
     }
 
     @Override
@@ -66,5 +76,9 @@ public class ChildEventListener implements com.google.firebase.database.ChildEve
     @Override
     public void onCancelled(DatabaseError databaseError) {
         Log.w("DatabaseError", "Failed to read value.", databaseError.toException());
+    }
+
+    private void notifyMainActivityRidesList(){
+        mainActivity.showRides();
     }
 }

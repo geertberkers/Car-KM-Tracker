@@ -1,8 +1,11 @@
 package geert.berkers.cartracker.activities;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
@@ -143,8 +146,8 @@ public class RideEditor extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         String date = dateFormat.format(calendar.getTime());
 
-        //TODO: Select driver
-        String driver = "TEST";
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String driver = sharedPref.getString("driverName", null);
         double ritStartMileAge = Double.valueOf(startMileAge.getText().toString());
         double ritEndMileAge = Double.valueOf(endMileAge.getText().toString());
         String ritDescription = description.getText().toString();

@@ -13,7 +13,8 @@
             android:id="@+id/startMileAge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Beginstand KM teller"
+            android:hint="@string/start_mileage_hint"
+            android:inputType="numberDecimal"
             android:maxLines="1"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -26,7 +27,8 @@
             android:id="@+id/endMileAge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Eindstand KM teller"
+            android:hint="@string/end_mileage_hint"
+            android:inputType="numberDecimal"
             android:maxLines="1"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -39,6 +41,7 @@
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textCapSentences"
             android:hint="Beschrijving"
             android:maxLines="1"/>
     </android.support.design.widget.TextInputLayout>
