@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -53,10 +54,10 @@ public class RideEditor extends AppCompatActivity {
 
         rideManager = RideManager.getRideManager();
 
-        Bundle b = getIntent().getExtras();
+        Bundle bundle = getIntent().getExtras();
 
         try {
-            Ride rideToEdit = b.getParcelable("rideParcelable");
+            Ride rideToEdit = bundle.getParcelable("rideParcelable");
             if (rideToEdit != null) {
                 startMileAge.setText(String.valueOf(rideToEdit.getStartMileAge()));
                 endMileAge.setText(String.valueOf(rideToEdit.getEndMileAge()));
@@ -65,6 +66,19 @@ public class RideEditor extends AppCompatActivity {
                 String changeRide = "Rit aanpassen";
                 btnAddRide.setText(changeRide);
                 setTitle(changeRide);
+            } else {
+                String startMileAgeValue = bundle.getString("startMileAge");
+
+                startMileAge.setText(startMileAgeValue);
+                endMileAge.requestFocus();
+
+                endMileAge.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        InputMethodManager keyboard = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        keyboard.showSoftInput(endMileAge, 0);
+                    }
+                },200);
             }
         } catch (Exception ex) {
             Log.e("NoRideToEdit", "Found no ride to edit");

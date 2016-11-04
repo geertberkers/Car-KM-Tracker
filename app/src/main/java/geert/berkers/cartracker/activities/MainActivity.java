@@ -122,8 +122,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String startMileAgeValue = String.valueOf(rideManager.getLastRide().getEndMileAge());
+
                 Intent rideEditorIntent = new Intent(MainActivity.this, RideEditor.class);
-                startActivity(rideEditorIntent);
+                rideEditorIntent.putExtra("startMileAge", startMileAgeValue);
+                if(getSharedPreferencesValue("driverName") == null){
+                    createAskNameDialog(rideEditorIntent);
+                } else {
+                    startActivity(rideEditorIntent);
+                }
             }
         });
     }
@@ -162,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         int id = item.getItemId();
 
         if (id == R.id.action_setting) {
-            createAskNameDialog();
+            createAskNameDialog(null);
             return true;
         } else if (drawerListener.onOptionsItemSelected(item)) {
             return true;
@@ -171,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         return super.onOptionsItemSelected(item);
     }
 
-    private void createAskNameDialog() {
+    private void createAskNameDialog(final Intent intent) {
         final View view = createDialogView();
 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -185,6 +192,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     saveSharedPreferences("driverName", driverNameValue);
                 } else {
                     Toast.makeText(MainActivity.this, "Voer een geldige naam in!", Toast.LENGTH_SHORT).show();
+                }
+
+                if(intent != null){
+                    startActivity(intent);
                 }
             }
         });

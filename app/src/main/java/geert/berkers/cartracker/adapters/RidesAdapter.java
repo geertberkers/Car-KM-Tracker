@@ -19,7 +19,7 @@ import geert.berkers.cartracker.model.Ride;
 
 public class RidesAdapter extends BaseAdapter {
 
-   // private boolean paid;
+    //TODO: Handle something to change rides
 
     private Context context;
 

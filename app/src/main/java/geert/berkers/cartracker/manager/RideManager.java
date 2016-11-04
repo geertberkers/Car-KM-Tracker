@@ -79,4 +79,8 @@ public class RideManager {
 
         return sortedRides;
     }
+
+    public Ride getLastRide() {
+        return ridesList.get(ridesList.size() - 1);
+    }
 }
